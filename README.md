@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Overview
 ​
 The second project is to **build a React application** that consumes a **public API**.
-​
+​...
 ### Technical Requirements
 ​
 Your app must:
