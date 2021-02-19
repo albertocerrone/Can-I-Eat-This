@@ -10,7 +10,7 @@ Timeline: 48h
 ---
 
 ## Overview
-![img](assets/readme/landingPage.png)<br>
+![img](img/readme/landingPage.png)<br>
 
 Can I Eat This is a website where users can select their allergies and dietary restrictions from a list, then input any recipe URL and the website will give back a list of the user's allergens that are contained in the recipe.
 
@@ -58,13 +58,13 @@ Clone or download the repo then do the following in Terminal:
 - Start front-end server: `yarn start`
 ### How to Use It
 
-![img](assets/readme/landingPage.png)<br>
+![img](img/readme/landingPage.png)<br>
 When you land on Can I Eat This, the first page will allow you to select your allergies and intolerances. <br>
 These values will be stored, then every time you will visit us, we'll remember about your choices.
 
 After selecting all your preferences you can navigate to the next page using the button `Continue` at the bottom of the page.
 
-![img](assets/readme/secondPage.png)<br>
+![img](img/readme/secondPage.png)<br>
 On this page, you can submit the URL of the recipes that you have found on the web. After submission, Can I Eat This will find all the ingredients and report only the ones that are harmful to you.
 
 [Back To The Top](#can-i-eat-this-)
@@ -87,13 +87,13 @@ On this page, you can submit the URL of the recipes that you have found on the w
 ### Approach Taken
 
 For this hackathon, I and Penny had to choose an API we wanted to use. Since both of us have a passion for food and love to try new recipes, so we decided to use Spoonacular API to build something useful and meaningful related to health.
-![img](assets/readme/userStory.png)
+![img](img/readme/userStory.png)
 
 We decided to pair code most of the app on VS Code Live Share to mix our knowledge and to avoid probable merging problems.
 
 Our first step is been studying the response from the API with Insomnia.
 This allowed us to master well this massive API and make it work for our needs.
-![img](assets/readme/insomnia.png)
+![img](img/readme/insomnia.png)
 
 On the first day, we built all the needs for the landing page and made all the logic with the React hooks useEffect and useState and used the local storage to catch and store information of the user. <br>
 Examples are:
