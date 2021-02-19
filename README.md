@@ -3,7 +3,7 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone) && [Penelope Jungreis]
 
 ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
 ![img](https://img.shields.io/badge/-WORK%20IN%20PROGRESS...-important)<br>
-Timeline: 7 days
+Timeline: 48h
 
 👉 [<b>Try me</b>](https://canieatthis.netlify.app/) 👈
 
@@ -27,9 +27,9 @@ This React app is my first pair-coding 48-hour hackathon, using the Spoonacular 
 - [How I Made It](#how-i-made-it)
   - [Technologies Used](#technologies-used)
   - [Approach Taken](#approach-taken)
-  - [Bugs, Blockers & Wins](#bugs,-blockers-&-wins)
-    - [Bugs](#bugs)
-    - [Challenges & Wins](#challenges-&-wins)
+  - [Challenges & Wins](#challenges-&-wins)
+    - [Challenges](#challenges)
+    - [Wins](#wins)
   - [Future Features & Key Learning](#future-features-&-key-learning)
     - [Future Features](#future-features)
     - [Key Learning](#key-learning)
@@ -86,59 +86,122 @@ On this page, you can submit the URL of the recipes that you have found on the w
 - [Spoonacular API](https://spoonacular.com/food-api)
 ### Approach Taken
 
-For my final project in General Assembly, I wanted to build something using Material-UI. This because I've been learning Material-UI on my own during the course and I wanted to bullet-proof my knowledge with this UI framework.
-As well I wanted to build something in a team because I believe in the African proverb "If you want to go fast, go alone. If you want to go far, go together".
+For this hackathon, I and Penny had to choose an API we wanted to use. Since both of us have a passion for food and love to try new recipes, so we decided to use Spoonacular API to build something useful and meaningful related to health.
+![img](assets/readme/userStory.png)
 
-When Daniel approached me with the idea of building a bug tracker app, I was instantly interested. It was matching my vision of building something that was going to:
-- be useful to me in the future 
-- talk about a common business problem
-- have a user authentication 
-- have an attractive and responsive UI
+We decided to pair code most of the app on VS Code Live Share to mix our knowledge and to avoid probable merging problems.
 
-##### Planning
-We spent the first day planning every face of the project:
-* We used a Trello board to throw down all the tasks that we considered important to do for our MVP.
-![img](assets/readme/trello.png)
-* Our back-end and all the relationships were planned using [QuickDB](https://app.quickdatabasediagrams.com/#/d/p9TZMZ). <br>
-![img](assets/readme/diagram.png)<br>
-My partner was intrigued to allow every user of the website to don't have a pre-decided role (manager or developer) but to give this choice every time the user is going to create a new project. <br>
-Be the manager of the project allows the user to create new tickets (tasks) and to update the status of the ticket as "Resolved". On the other end,  being a developer allows changing the status of the tickets between "In Progress", "Feedback" and "Blocked".
-To do so, we created a join table called "Group_member" that store the user_id and what role they have in every project.
+Our first step is been studying the response from the API with Insomnia.
+This allowed us to master well this massive API and make it work for our needs.
+![img](assets/readme/insomnia.png)
 
-* Since I wanted to use Material-UI, I spent a bit of time, researching ideas of the style that I wanted to give.<br>
-It's been really helpful downloading various templates and guides to take inspiration and the one created by [Devias](https://material-ui.com/store/items/devias-kit/) felt matching with my vision for this app. <br>
-Using a template as a reference, allowed me to boost my development process and to take care not only of the UI but backend too.
+On the first day, we built all the needs for the landing page and made all the logic with the React hooks useEffect and useState and used the local storage to catch and store information of the user. <br>
+Examples are:
 
-After the day of planning, the first 2 days of coding were focused on building the backend with Django and PostgreSQL.
-The second day, Daniel started to set up React and starting to work on the frontend's logic, and I finished building the rest of Django.
 
-From the third day until the last, both of us were working together on the frontend. We organized each other in a way that Daniel was going to create the logic of the component needed and leaving me a good base where to implement all the styling from Material-UI.
+```javascript 
+//initialized user restrictions with a default object in state
+const [user, setUser] = React.useState({
+    vegetarian: false,
+    vegan: false,
+    glutenFree: false,
+    dairyFree: false,
+    allergies: [],
+  })
+```
+
+```javascript 
+//using useEffect to update the values when any of the checkbox are changed
+React.useEffect(() => {
+  window.localStorage.setItem('vegetarian', JSON.stringify(vegetarian))
+}, [vegetarian])
+const handleVegetarian = (event) => {
+  setVegetarian(!vegetarian)
+}
+
+React.useEffect(() => {
+  window.localStorage.setItem('vegan', JSON.stringify(vegan))
+}, [vegan])
+const handleVegan = (event) => {
+  setVegan(!vegan)
+}
+React.useEffect(() => {
+  window.localStorage.setItem('glutenFree', JSON.stringify(glutenFree))
+}, [glutenFree])
+const handleGlutenFree = (event) => {
+  setGlutenFree(!glutenFree)
+}
+...
+```
+
+```javascript 
+//this function check if there are already items stored in local storage
+const [allergies, setAllergies] = React.useState(() => {
+  const currentState = window.localStorage.getItem('allergies')
+  if (currentState) return JSON.parse(currentState)
+  return []
+})
+```
+
+
+On the second and last day, we built the second page with the submit form and used Axios to fetch data from the API.
+```javascript
+import axios from 'axios'
+
+const baseUrl = 'https://api.spoonacular.com'
+const myAPI = process.env.REACT_APP_MY_API_KEY
+
+export function getRecipeInfo(pageUrl){
+  return axios.get(`${baseUrl}/recipes/extract?apiKey=${myAPI}&url=${pageUrl}`)
+}
+```
+
+Right before the end of the hackathon, we managed to build the functionality that checks the array of allergies in the local storage against the ingredients in the recipe, displaying the list of matches on the page and gave a quick styling with Bulma CSS framework.
+
+```javascript
+//function that compare the allergies and dietary restrictions
+const checkIngredients = (myRecipe) =>{
+    const localStorageAllergies = window.localStorage.getItem('allergies')
+    const localStorageVegetarian = window.localStorage.getItem('vegetarian')
+    const localStorageVegan = window.localStorage.getItem('vegan')
+    const localStorageGlutenFree = window.localStorage.getItem('glutenFree')
+    const localStorageDairyFree = window.localStorage.getItem('dairyFree')
+
+    const  ingredients  = myRecipe.extendedIngredients.map(ingredient =>{
+      return ingredient.name
+    }).filter(element => localStorageAllergies.includes(element))
+    
+    if (localStorageVegetarian === true) {
+      ingredients.push('vegetarian')
+    }
+    if (localStorageVegan === true) {
+      ingredients.push('vegan')
+    }
+    if (localStorageGlutenFree === true) {
+      ingredients.push('gluten free')
+    }
+    if (localStorageDairyFree === true) {
+      ingredients.push('dairy free')
+    }
+    setBadIngredients(ingredients)
+  }
+```
 
 [Back To The Top](#can-i-eat-this-)
 
 ---
-### Bugs, Blockers & Wins
+### Challenges & Wins
 
-#### Bugs
-- [ ] Fix problems with roles and different limitations
-- [ ] Fix responsiveness and background issue in the landing page
-- [ ] Fix problems/refactor error handling
-- [ ] Fix floating buttons that move while scrolling
-- [ ] Change Icons in Tickets page
-- [ ] Fix icons on the Project page (if the description is long they move at the bottom of the card)
-- [ ] Fix navbar that changes color when scrolling
-- [ ] Fix New ticket function (doesn't give the option to select the type)
- 
-#### Challenges & Wins
-Building this project is been fun but, the short timeline didn't allow us to implement all the features that we were thinking to add, especially the most useful ones like the opportunity to update the tickets.<br>
-We had to cut some corners and twist a bit our backend diagram during the last hours before deadline.
+#### Challenges
 
-One of my biggest challenges is been the implementation of the second step where the user selects who is a member of the team and what roles he/she has.<br>
-Took me a full day, but with the help from Daniel and my coach, we managed to implement a feature that I'm proud of.<br>
-![img](assets/readme/selectRoles.gif)<br>
-You can see the code from [here](client/src/components/roles&groups)
-As well I love the responsiveness and the opportunity to be used without any problems on a small screen.
-![img](assets/readme/responsive.gif)
+We were aiming to a scope that was too big to be made in less than 48h; in our ideal world our app that allowed the user to register, select different allergies and/or intolerances, and, thanks to a Chrome extension, the food checking was done automatically without the user submitting the URL of the website.
+
+As well the API informations regarding <i>gluten free & dairy free</i> aren't totally reliable.
+
+#### Wins
+This was for us the first time we were building an app from the ground with React and APIs, and I found that the challenges that a hackathon lets you face are incredible to learn effectively. 
+
+As well our goal was difficult to be achieved because of the really short amount of time and our competencies ( we didn't have any knowledge of database and authentication) but, we thought to use local storage to achieve something similar and worked great.
 
 [Back To The Top](#can-i-eat-this-)
 
@@ -146,21 +209,10 @@ As well I love the responsiveness and the opportunity to be used without any pro
 ### Future Features & Key Learning
 
 #### Future Features
-- [ ] Add Transitions & Animations
-- [ ] Add Notification feature
-- [ ] Add Analytics page where user can find charts reflecting the performance tickets & projects
-- [ ] Improve Account page with better UI
-- [ ] Add Setting page where the user can switch between Dark Mode/ Light Mode and where to change the account password
-- [ ] Make Tasks Progress bar working
-- [ ] Improve UI for Ticket's comments
+- [ ] Transform this app in a Chrome browser extension
 #### Key Learning
-This project was one of my favorites where I had the opportunity to learn so much.<br>
-I loved work with Django and Python. It allowed us to build the backend with a higher speed compared to Node.js
-
-But I feel that the best takeaway is coming from the use of the template for reference.<br>
-Using the template allowed me to enter in contact with a code written from a stranger, with a completely different design pattern and new libraries like prop-types.<br>
-Prop-types, in particular, allowed me to enter in contact with type checking and a little taste of how useful can be with bigger projects. <br>
-Now I'm really curious to learn more about type checking and TypeScript in particular.
+- This was my first-time pair coding on any project and I learnt so much about collaborating and communicating, especially because with my past experiences collaboration it always been a face-to-face process but this time everything was moving through Zoom and VS Code Live Share.
+- I loved how a big scope challenged our creativity so much to find a work-around for our needs, but maybe next time I'll try to be more realistic 😅
 
 
 [Back To The Top](#can-i-eat-this-)
@@ -168,7 +220,7 @@ Now I'm really curious to learn more about type checking and TypeScript in parti
 ---
 ## Contributors
 * Alberto Cerrone [📧](mailto:cerrone.alberto93@gmail.com)
-* Penelope Jungreis [📧](mailto:dfernandezda21@gmail.com)
+* Penelope Jungreis [📧](mailto:penelope.jungreis@gmail.com)
 
 ### Contributing to this project
 If you have suggestions for improving this project, please [open an issue on GitHub](https://github.com/albertocerrone/Can-I-Eat-This/issues/new).
