@@ -2,7 +2,8 @@
 by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone) && [Penelope Jungreis](https://github.com/penelopecj)<br>
 
 ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
-![img](https://img.shields.io/badge/-WORK%20IN%20PROGRESS...-important)<br>
+![img](https://img.shields.io/badge/-WORK%20IN%20PROGRESS...-important)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5677d098-5765-4080-96ec-afdc964fb299/deploy-status)](https://app.netlify.com/sites/canieatthis/deploys)<br>
 Timeline: 48h
 
 👉 [<b>Try Me</b>](https://canieatthis.netlify.app/) 👈
