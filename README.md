@@ -5,7 +5,7 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone) && [Penelope Jungreis]
 ![img](https://img.shields.io/badge/-WORK%20IN%20PROGRESS...-important)<br>
 Timeline: 48h
 
-👉 [<b>Try me</b>](https://canieatthis.netlify.app/) 👈
+👉 [<b>Try Me</b>](https://canieatthis.netlify.app/) 👈
 
 ---
 
@@ -52,7 +52,7 @@ REACT_APP_SPOONACULAR_API_KEY=yourAPIKey
 
 
 ### Installation Steps
-Clone or download the repo then do the following in Terminal:
+Clone or download the repository, then do the following in Terminal:
 
 - Install front-end dependencies: `yarn`
 - Start front-end server: `yarn start`
@@ -60,7 +60,7 @@ Clone or download the repo then do the following in Terminal:
 
 ![img](img/readme/landingPage.png)<br>
 When you land on Can I Eat This, the first page will allow you to select your allergies and intolerances. <br>
-These values will be stored, then every time you will visit us, we'll remember about your choices.
+These values will be stored, then every time you will visit the website, we'll remember about your choices.
 
 After selecting all your preferences you can navigate to the next page using the button `Continue` at the bottom of the page.
 
@@ -74,7 +74,7 @@ On this page, you can submit the URL of the recipes that you have found on the w
 ### Technologies Used
 
 #### Languages Used
-- [Javascript](https://www.javascript.com/)
+- [JavaScript](https://www.javascript.com/)
 - [SASS](https://sass-lang.com/)
 #### Frameworks
 - [React with React Hooks](https://reactjs.org/)
@@ -89,9 +89,9 @@ On this page, you can submit the URL of the recipes that you have found on the w
 For this hackathon, I and Penny had to choose an API we wanted to use. Since both of us have a passion for food and love to try new recipes, so we decided to use Spoonacular API to build something useful and meaningful related to health.
 ![img](img/readme/userStory.png)
 
-We decided to pair code most of the app on VS Code Live Share to mix our knowledge and to avoid probable merging problems.
+We decided to pair code most of the app on Visual Studio Code Live Share to mix our knowledge and to avoid probable merging problems.
 
-Our first step is been studying the response from the API with Insomnia.
+Our first step has been studying the response from the API with Insomnia.
 This allowed us to master well this massive API and make it work for our needs.
 ![img](img/readme/insomnia.png)
 
@@ -199,9 +199,9 @@ We were aiming to a scope that was too big to be made in less than 48h; in our i
 As well the API informations regarding <i>gluten free & dairy free</i> aren't totally reliable.
 
 #### Wins
-This was for us the first time we were building an app from the ground with React and APIs, and I found that the challenges that a hackathon lets you face are incredible to learn effectively. 
+This was for us the first time we were building an app from the ground with React and APIs, and I found that the challenges that an hackathon lets you face are incredible to learn effectively. 
 
-As well our goal was difficult to be achieved because of the really short amount of time and our competencies ( we didn't have any knowledge of database and authentication) but, we thought to use local storage to achieve something similar and worked great.
+As well, our goal was difficult to be achieved because of the really short amount of time and our competencies ( we didn't have any knowledge of database and authentication) but, we thought to use local storage to achieve something similar and worked great.
 
 [Back To The Top](#can-i-eat-this-)
 
@@ -231,7 +231,6 @@ If you have suggestions for improving this project, please [open an issue on Git
 ## License & copyright
 
 This work is dedicated to the [public domain (CC0 1.0)](http://creativecommons.org/publicdomain/zero/1.0/). To the extent possible under law, Alberto Cerrone has waived all copyright and related or neighbouring rights to the "Can I Eat This". See the LICENSE file for all the legalese.
-
 
 
 [Back To The Top](#can-i-eat-this-)
